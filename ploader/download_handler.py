@@ -30,7 +30,7 @@ class Download(object):
 		out = "\n"
 		out += "%s (%i) - %s\n" % (self.name, len(self.links), self.passwd)
 		for ele in self.links:
-			out += "[%s] %s (%s)\n" % (ele["status"], ele["link"], ele["progress"] if "progress" in ele.keys() else "-")
+			out += "[%s] %s (%s)\n" % (ele["status"], ele["link"], ele["progress"] if "progress" in list(ele.keys()) else "-")
 		out += "-> %s\n" % self.dw_dir
 		return out
 
@@ -83,9 +83,9 @@ class Download(object):
 							except rarfile.RarCRCError:
 								print(" Fail: CRC error")
 					else:
-						print("Could not find all compressed files for \"%s\"" % fn)
+						print(("Could not find all compressed files for \"%s\"" % fn))
 				else:
-					print("No decompression method found for \"%s\"" % fn)
+					print(("No decompression method found for \"%s\"" % fn))
 
 	def download(self):
 		"""Handles complete download

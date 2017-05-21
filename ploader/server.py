@@ -28,7 +28,7 @@ class Client(asyncore.dispatcher_with_send):
 
 			if self.cur_command == None:
 				# looking for next command
-				if inp in interface_commands.keys():
+				if inp in list(interface_commands.keys()):
 					self.cur_command = interface_commands[inp]()
 			if self.cur_command != None:
 				# executing current command
@@ -59,7 +59,7 @@ class Server(asyncore.dispatcher):
 		self.callback = None
 
 	def handle_accepted(self, sock, addr):
-		print('Incoming connection from %s' % repr(addr))
+		print(('Incoming connection from %s' % repr(addr)))
 		client = Client(sock, self.callback)
 
 	def set_callback(self, callback):

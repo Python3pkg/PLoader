@@ -81,13 +81,13 @@ def parse_url_info(url, res_list, res_err, retc):
 				# download file directly
 				return fname, url
 
-		print(
+		print((
 			"Error while getting link info: " +
 			repr(res_err) +
 			" (" +
 			str(retc) +
 			")"
-		)
+		))
 		return False
 	else:
 		return res_list[0], res_list[1]
@@ -98,12 +98,12 @@ def load_file(url, path, callback):
 		If <x> is True this is considered to be a fatal error, link will be skipped
 		If <x> is False this link will be retried.
 	"""
-	print("Saving '%s' to '%s'" % (url, path))
+	print(("Saving '%s' to '%s'" % (url, path)))
 
 	try:
 		dw_file_to(url, path, callback)
 	except Exception as e:
-		print("Error while downloading: " + str(e))
+		print(("Error while downloading: " + str(e)))
 
 		# check for fatal error
 		if e.code == 404:
@@ -123,7 +123,7 @@ def load_config():
 		return yaml.load(open(config_path, "r"))
 	else:
 		# return defaults
-		print('No config file present, creating default one (path: %s)' % config_path)
+		print(('No config file present, creating default one (path: %s)' % config_path))
 		create_default_config(config_path)
 		
 		try:
